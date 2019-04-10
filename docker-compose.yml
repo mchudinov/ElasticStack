@@ -1,11 +1,9 @@
-version: '3'
+version: '3.7'
 
 services:
   elastic:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.7.1
     container_name: elastic
-    ports:
-      - 9200:9200
     networks: 
       elastic:
         ipv4_address: 172.18.0.5
@@ -36,6 +34,7 @@ services:
 
 networks:
   elastic:
+    name: elastic
     driver: bridge
     ipam:      
       config:
