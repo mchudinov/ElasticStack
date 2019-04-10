@@ -6,7 +6,6 @@ services:
     container_name: elastic
     networks: 
       elastic:
-        ipv4_address: 172.18.0.5
     
   kibana:
     image: docker.elastic.co/kibana/kibana
@@ -15,7 +14,6 @@ services:
       - 5601:5601
     networks: 
       elastic:
-        ipv4_address: 172.18.0.6
     build:
       context: './kibana'
       args:
@@ -26,7 +24,6 @@ services:
     container_name: heartbeat
     networks: 
       elastic:
-        ipv4_address: 172.18.0.7
     build: 
       context: './heartbeat'
       args:
@@ -36,6 +33,4 @@ networks:
   elastic:
     name: elastic
     driver: bridge
-    ipam:      
-      config:
-          - subnet: 172.18.0.0/24
+    
