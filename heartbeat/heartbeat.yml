@@ -1,0 +1,19 @@
+heartbeat.monitors:
+- type: http
+  schedule: '@every 30s'
+  urls:
+    - https://vg.no
+
+- type: icmp
+  schedule: '@every 30s'
+  hosts:
+    - yahoo.com
+
+processors:
+- add_cloud_metadata: ~
+
+output.elasticsearch:
+  hosts: ["172.18.0.5:9200"]
+
+setup.kibana:
+  host: ["172.18.0.6:5601"]

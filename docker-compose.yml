@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.7.1
+    container_name: elastic
+    ports:
+      - 9200:9200
+    networks: 
+      elastic:
+        ipv4_address: 172.18.0.5
+    
+  kibana:
+    image: docker.elastic.co/kibana/kibana
+    container_name: kibana
+    ports:
+      - 5601:5601
+    networks: 
+      elastic:
+        ipv4_address: 172.18.0.6
+    build:
+      context: './kibana'
+      args:
+        - IMAGE_VERSION=6.7.1
+
+  heartbeat:
+    image: docker.elastic.co/beats/heartbeat
+    container_name: heartbeat
+    networks: 
+      elastic:
+        ipv4_address: 172.18.0.7
+    build: 
+      context: './heartbeat'
+      args:
+        - IMAGE_VERSION=6.7.1
+
+networks:
+  elastic:
+    driver: bridge
+    ipam:      
+      config:
+          - subnet: 172.18.0.0/24
