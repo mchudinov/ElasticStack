@@ -1,1 +1,1 @@
-az webapp create --resource-group fmdclient --plan fmdclient --name elasticstack --multicontainer-config-type compose --multicontainer-config-file docker-compose.env.yml
+az webapp create --resource-group fmdclient --plan fmdclient --name elasticstack --multicontainer-config-type compose --multicontainer-config-file docker-compose.combined.yml
