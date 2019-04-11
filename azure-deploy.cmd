@@ -1,1 +1,1 @@
-az webapp list
+az webapp update --name elasticstack --multicontainer-config-type compose --multicontainer-config-file docker-compose.yml
