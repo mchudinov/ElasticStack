@@ -1,1 +1,1 @@
-az webapp update --name elasticstack --multicontainer-config-type compose --multicontainer-config-file docker-compose.yml
+az webapp update --resource-group fmdclient --plan fmdclient --name elasticstack --multicontainer-config-type compose --multicontainer-config-file docker-compose.yml
