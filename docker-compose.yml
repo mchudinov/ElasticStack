@@ -11,7 +11,7 @@ services:
     image: ${KIBANA_IMAGE_NAME}
     container_name: kibana
     ports:
-      - 5601:5601
+      - 5601:80
     networks: 
       elastic:
     build:
