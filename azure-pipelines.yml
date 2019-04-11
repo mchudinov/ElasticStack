@@ -10,7 +10,7 @@ steps:
 
 - script: |
     docker login --username $dockerId --password $pswd
-    docker push
+    docker-compose push
   displayName: 'Docker push'
   env:
     pswd: $(dockerPassword)
