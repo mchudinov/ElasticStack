@@ -6,10 +6,9 @@ pool:
 
 variables:
   dockerId: 'chudinov'
-  imageName: 'nginx-hello'
 
 steps:
-- script: docker build --tag $(dockerId)/$(imageName) .
+- script: docker-compose build
   displayName: 'Docker build'
 
 - script: |
