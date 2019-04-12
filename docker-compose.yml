@@ -4,22 +4,21 @@ services:
   elasticsearch:
     image: ${ELASTICSEARCH_IMAGE_NAME}
     container_name: elasticsearch    
-    #ports: ['9200:9200','9300:9300']   #no need for this
+    #ports: ['9200:9200','9300:9300']
     networks:
       elastic:
-        ipv4_address: 172.20.0.3
+        ipv4_address: 10.4.71.15
     build:
       context: './elasticsearch'
       args:
         - IMAGE_VERSION=${ELASTICSEARCH_IMAGE_VERSION}
     environment:
         - discovery.type=single-node
-        - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
     
   kibana:
     image: ${KIBANA_IMAGE_NAME}
     container_name: kibana
-    ports: ['5601:80']
+    ports: ['5601:5601']
     networks: ['elastic']
     build:
       context: './kibana'
@@ -43,6 +42,4 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.20.0.0/24
-
-    
+        - subnet: 10.4.71.0/24
