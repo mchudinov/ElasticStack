@@ -9,8 +9,10 @@ COPY --chown=elasticsearch:elasticsearch elasticsearch.yml /usr/share/elasticsea
 
 # COPY sshd_config /etc/ssh/
 
-# EXPOSE 2222 80
+# EXPOSE 9200
 
+# ENV SSH_PASSWD "root:Docker!"
+# ENV SSH_PORT 2222
 # COPY init_container.sh /opt/startup
 # RUN chmod 755 /opt/startup/init_container.sh
 # ENTRYPOINT ["/opt/startup/init_container.sh"]

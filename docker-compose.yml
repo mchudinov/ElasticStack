@@ -4,10 +4,7 @@ services:
   elasticsearch:
     image: ${ELASTICSEARCH_IMAGE_NAME}
     container_name: elasticsearch    
-    #ports: ['9200:9200','9300:9300']
-    networks:
-      elastic:
-        ipv4_address: 10.4.71.15
+    networks: ['elastic']
     build:
       context: './elasticsearch'
       args:
@@ -41,6 +38,3 @@ networks:
   elastic:
     name: elastic
     driver: bridge
-    ipam:
-      config:
-        - subnet: 10.4.71.0/24
