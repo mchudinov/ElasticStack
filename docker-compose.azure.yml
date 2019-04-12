@@ -4,7 +4,7 @@ services:
   elasticsearch:
     image: chudinov/elasticsearch
     container_name: elasticsearch
-    #ports: ['9200:9200'.'9300:9300']
+    #ports: ['9200:9200'.'9300:9300','2222:2222']
     networks:
       elastic:
         ipv4_address: 10.4.71.15
@@ -14,6 +14,7 @@ services:
         - IMAGE_VERSION=7.0.0    
     environment:
         - discovery.type=single-node
+        - network.host=10.4.71.15
     
   kibana:
     image: chudinov/kibana
@@ -34,12 +35,12 @@ services:
       context: './heartbeat'
       args:
         - IMAGE_VERSION=7.0.0
-    depends_on: ['elasticsearch']
+    depends_on: ['elasticsearch','kibana']
 
 networks:
   elastic:
     name: elastic
-    driver: azure-vnet
+    driver: bridge
     ipam:
       config:
         - subnet: 10.4.71.0/24

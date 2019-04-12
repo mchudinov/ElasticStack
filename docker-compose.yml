@@ -14,6 +14,7 @@ services:
         - IMAGE_VERSION=${ELASTICSEARCH_IMAGE_VERSION}
     environment:
         - discovery.type=single-node
+        - network.host=elasticsearch
     
   kibana:
     image: ${KIBANA_IMAGE_NAME}
@@ -34,7 +35,7 @@ services:
       context: './heartbeat'
       args:
         - IMAGE_VERSION=${HEARTBEAT_IMAGE_VERSION}
-    depends_on: ['elasticsearch']
+    depends_on: ['elasticsearch','kibana']
 
 networks:
   elastic:
