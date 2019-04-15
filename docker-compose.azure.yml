@@ -5,6 +5,7 @@ services:
     image: chudinov/elasticsearch
     container_name: elasticsearch
     networks: ['elastic']
+    restart: always
     build:
       context: './elasticsearch'    
     # environment:
@@ -14,8 +15,9 @@ services:
   kibana:
     image: chudinov/kibana
     container_name: kibana
-    ports: ['80:5601']
+    ports: ['5601:80']
     networks: ['elastic']
+    restart: always
     build:
       context: './kibana'
       args:
@@ -26,6 +28,7 @@ services:
     image: chudinov/heartbeat
     container_name: heartbeat
     networks: ['elastic']
+    restart: always
     build: 
       context: './heartbeat'
       args:

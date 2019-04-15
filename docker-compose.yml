@@ -5,6 +5,7 @@ services:
     image: ${ELASTICSEARCH_IMAGE_NAME}
     container_name: elasticsearch
     networks: ['elastic']
+    restart: always
     build:
       context: './elasticsearch'
       args:
@@ -17,6 +18,7 @@ services:
     image: ${KIBANA_IMAGE_NAME}
     container_name: kibana
     ports: ['8083:5601']
+    restart: always
     networks: ['elastic']
     build:
       context: './kibana'
@@ -28,6 +30,7 @@ services:
     image: ${HEARTBEAT_IMAGE_NAME}
     container_name: heartbeat
     networks: ['elastic']
+    restart: always
     build: 
       context: './heartbeat'
       args:
