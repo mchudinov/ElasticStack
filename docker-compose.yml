@@ -4,7 +4,6 @@ services:
   elasticsearch:
     image: ${ELASTICSEARCH_IMAGE_NAME}
     container_name: elasticsearch
-    ports: ['9200:9200']
     networks: ['elastic']
     build:
       context: './elasticsearch'

@@ -2,40 +2,37 @@ version: '3.7'
 
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.0.0
+    image: chudinov/elasticsearch
     container_name: elasticsearch
-    ports: ['9200:80','9300:9300']
-    #networks: ['elastic']
-    # build:
-    #   context: './elasticsearch'
-    #   args:
-    #     - IMAGE_VERSION=7.0.0    
-    environment:
-        - discovery.type=single-node
-        - network.host=elasticsearch
+    networks: ['elastic']
+    build:
+      context: './elasticsearch'    
+    # environment:
+    #     - discovery.type=single-node
+    #     - network.host=elasticsearch
     
-  # kibana:
-  #   image: chudinov/kibana
-  #   container_name: kibana
-  #   ports: ['5601:80']
-  #   networks: ['elastic']
-  #   build:
-  #     context: './kibana'
-  #     args:
-  #       - IMAGE_VERSION=7.0.0
-  #   depends_on: ['elasticsearch']
+  kibana:
+    image: chudinov/kibana
+    container_name: kibana
+    ports: ['80:5601']
+    networks: ['elastic']
+    build:
+      context: './kibana'
+      args:
+        - IMAGE_VERSION=6.7.0
+    depends_on: ['elasticsearch']
     
-  # heartbeat:
-  #   image: chudinov/heartbeat
-  #   container_name: heartbeat
-  #   networks: ['elastic']
-  #   build: 
-  #     context: './heartbeat'
-  #     args:
-  #       - IMAGE_VERSION=7.0.0
-  #   depends_on: ['elasticsearch','kibana']
+  heartbeat:
+    image: chudinov/heartbeat
+    container_name: heartbeat
+    networks: ['elastic']
+    build: 
+      context: './heartbeat'
+      args:
+        - IMAGE_VERSION=6.7.0
+    depends_on: ['elasticsearch','kibana']
 
-# networks:
-#   elastic:
-#     name: elastic
-#     driver: bridge
+networks:
+  elastic:
+    name: elastic
+    driver: bridge
