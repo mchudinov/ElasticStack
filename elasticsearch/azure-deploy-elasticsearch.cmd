@@ -1,0 +1,1 @@
+az webapp create --resource-group elastic --plan elastic --name elastic2 --deployment-container-image-name chudinov/elasticsearch

@@ -1,7 +1,7 @@
-ARG IMAGE_VERSION
-FROM docker.elastic.co/elasticsearch/elasticsearch:$IMAGE_VERSION
+#ARG IMAGE_VERSION
+FROM docker.elastic.co/elasticsearch/elasticsearch:6.7.0
 
-COPY --chown=elasticsearch:elasticsearch elasticsearch.yml /usr/share/elasticsearch/config/
+# COPY --chown=elasticsearch:elasticsearch elasticsearch.yml /usr/share/elasticsearch/config/
 
 # RUN apt-get update \
 # 	&& apt-get install -y --no-install-recommends openssh-server \
@@ -9,7 +9,8 @@ COPY --chown=elasticsearch:elasticsearch elasticsearch.yml /usr/share/elasticsea
 
 # COPY sshd_config /etc/ssh/
 
-# EXPOSE 9200
+EXPOSE 9200
+ENV discovery.type single-node
 
 # ENV SSH_PASSWD "root:Docker!"
 # ENV SSH_PORT 2222

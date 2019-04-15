@@ -203,7 +203,7 @@
 # Set the address other nodes will use to communicate with this node. If not
 # set, it is automatically derived. It must point to an actual IP address.
 #
-#network.publish_host: 0.0.0.0
+#network.publish_host: elasticsearch
 
 # Set both 'bind_host' and 'publish_host':
 #
