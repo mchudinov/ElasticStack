@@ -8,18 +8,13 @@ services:
     restart: always
     build:
       context: './elasticsearch'
-      args:
-        - IMAGE_VERSION=${ELASTICSEARCH_IMAGE_VERSION}
-    #environment:
-        #- discovery.type=single-node
-        #- network.host=elasticsearch
     
   kibana:
     image: ${KIBANA_IMAGE_NAME}
     container_name: kibana
-    ports: ['8083:5601']
-    restart: always
+    ports: ['5601:5601']
     networks: ['elastic']
+    restart: always
     build:
       context: './kibana'
       args:
