@@ -8,11 +8,12 @@ services:
     restart: always
     build:
       context: './elasticsearch'
+      args:
+        - IMAGE_VERSION=${KIBANA_IMAGE_VERSION}
     
   kibana:
     image: ${KIBANA_IMAGE_NAME}
     container_name: kibana
-    ports: ['5601:5601']
     networks: ['elastic']
     restart: always
     build:
@@ -30,6 +31,16 @@ services:
       context: './heartbeat'
       args:
         - IMAGE_VERSION=${HEARTBEAT_IMAGE_VERSION}
+    depends_on: ['elasticsearch','kibana']
+
+  nginx:
+    image: chudinov/elasticnginx
+    container_name: nginx
+    ports: ['8081:80']
+    networks: ['elastic']
+    restart: always
+    build: 
+      context: './nginx'
     depends_on: ['elasticsearch','kibana']
 
 networks:

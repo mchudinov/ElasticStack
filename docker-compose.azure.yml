@@ -1,27 +1,25 @@
 version: '3.7'
 
 services:
-  # elasticsearch:
-  #   image: chudinov/elasticsearch
-  #   container_name: elasticsearch
-  #   networks: ['elastic']
-  #   restart: always
-  #   build:
-  #     context: './elasticsearch'    
+  elasticsearch:
+    image: chudinov/elasticsearch
+    container_name: elasticsearch
+    networks: ['elastic']
+    restart: always
+    build:
+      context: './elasticsearch'
+      args:
+        - IMAGE_VERSION=7.0.0 
     
   kibana:
     image: chudinov/kibana
     container_name: kibana
-    ports: ['80:80']
     networks: ['elastic']
     restart: always
     build:
       context: './kibana'
       args:
-        - IMAGE_VERSION=6.7.1
-    environment:
-        - server.port=80
-        - elasticsearch.hosts="http://52.155.172.120:9200"
+        - IMAGE_VERSION=7.0.0
     
   heartbeat:
     image: chudinov/heartbeat
@@ -31,11 +29,18 @@ services:
     build: 
       context: './heartbeat'
       args:
-        - IMAGE_VERSION=6.7.1
+        - IMAGE_VERSION=7.0.0
     depends_on: ['kibana']
-    environment:
-        - setup.kibana.host="kibana:80"
-        - output.elasticsearch.hosts="52.155.172.120:9200"
+
+  nginx:
+    image: chudinov/elasticnginx
+    container_name: nginx
+    ports: ['80:80']
+    networks: ['elastic']
+    restart: always
+    build: 
+      context: './nginx'
+    depends_on: ['elasticsearch','kibana']
 
 networks:
   elastic:
