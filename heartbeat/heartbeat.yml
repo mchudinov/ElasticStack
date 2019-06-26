@@ -1,10 +1,8 @@
+output.elasticsearch.hosts: ["http://elasticsearch-chudinov.azurewebsites.net:80"]
+setup.kibana.host: "http://kibana-chudinov.azurewebsites.net:80"
+
 heartbeat.monitors:
 - type: http
   schedule: '@every 30s'
   urls: ["https://api.apps.eikplatform.io/fmd/health","https://fmd.client.eikplatform.io"]
   check.response.status: 200
-
-output.elasticsearch:
-  hosts: ["http://elasticsearch:9200"]
-
-setup.kibana.host: "http://kibana:5601"

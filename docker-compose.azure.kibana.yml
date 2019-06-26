@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+    
+  kibana:
+    image: chudinov/kibana
+    container_name: kibana
+    networks: ['kibana']
+    restart: always
+    build:
+      context: './kibana'
+      args:
+        - IMAGE_VERSION=7.0.0
+    environment:
+      - elasticsearch.hosts="http://elasticsearch-chudinov.azurewebsites.net:80"
+
+  nginx:
+    image: chudinov/nginx-kibana
+    container_name: nginx
+    ports: ['80:80']
+    networks: ['kibana']
+    restart: always
+    build: 
+      context: './nginx-kibana'
+    depends_on: ['kibana']
+
+networks:
+  kibana:
+    name: kibana
+    driver: bridge

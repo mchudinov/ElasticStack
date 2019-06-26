@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  elasticsearch:
+    image: chudinov/elasticsearch
+    container_name: elasticsearch
+    networks: ['elasticsearch']
+    restart: always
+    build:
+      context: './elasticsearch'
+      args:
+        - IMAGE_VERSION=7.0.0 
+  
+  nginx:
+    image: chudinov/nginx-elasticsearch
+    container_name: nginx
+    ports: ['80:80']
+    networks: ['elasticsearch']
+    restart: always
+    build: 
+      context: './nginx-elasticsearch'
+    depends_on: ['elasticsearch']
+
+networks:
+  elasticsearch:
+    name: elasticsearch
+    driver: bridge

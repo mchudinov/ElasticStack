@@ -34,13 +34,13 @@ services:
     depends_on: ['elasticsearch','kibana']
 
   nginx:
-    image: chudinov/elasticnginx
+    image: chudinov/nginx-kibana
     container_name: nginx
     ports: ['8081:80']
     networks: ['elastic']
     restart: always
     build: 
-      context: './nginx'
+      context: './nginx-kibana'
     depends_on: ['elasticsearch','kibana']
 
 networks:

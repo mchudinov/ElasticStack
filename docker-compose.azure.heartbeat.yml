@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  heartbeat:
+    image: chudinov/heartbeat
+    container_name: heartbeat
+    restart: always
+    build:
+      context: './heartbeat'
+      args:
+        - IMAGE_VERSION=7.0.0 
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports: ['80:80']
+    restart: always
