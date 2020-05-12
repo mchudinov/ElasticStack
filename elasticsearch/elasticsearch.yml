@@ -198,7 +198,7 @@
 
 # Set the bind address specifically (IPv4 or IPv6):
 #
-network.bind_host: 0.0.0.0
+# network.bind_host: 0.0.0.0
 
 # Set the address other nodes will use to communicate with this node. If not
 # set, it is automatically derived. It must point to an actual IP address.
@@ -219,7 +219,7 @@ network.bind_host: 0.0.0.0
 
 # Set a custom port to listen for HTTP traffic:
 #
-#http.port: 9200
+# http.port: 9200
 
 # Set a custom allowed content length:
 #

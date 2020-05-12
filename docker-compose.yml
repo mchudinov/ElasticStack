@@ -4,46 +4,60 @@ services:
   elasticsearch:
     image: ${ELASTICSEARCH_IMAGE_NAME}
     container_name: elasticsearch
-    networks: ['elastic']
+    networks: [elastic]
+    ports: [9200:9200]
     restart: always
     build:
       context: './elasticsearch'
       args:
         - IMAGE_VERSION=${KIBANA_IMAGE_VERSION}
-    
+  
+  logstash:
+    image: ${LOGSTASH_IMAGE_NAME}
+    container_name: logstash
+    ports: [5514:5514/udp, 9600:9600, 5044:5044]
+    networks: [elastic]
+    restart: always
+    build:
+      context: './logstash'
+      args:
+        - IMAGE_VERSION=${LOGSTASH_IMAGE_VERSION}
+    command: logstash -f /usr/share/logstash/pipeline/logstash.conf
+    depends_on: [elasticsearch]
+  
   kibana:
     image: ${KIBANA_IMAGE_NAME}
     container_name: kibana
-    networks: ['elastic']
+    networks: [elastic]
+    ports: [5601:5601]
     restart: always
     build:
       context: './kibana'
       args:
         - IMAGE_VERSION=${KIBANA_IMAGE_VERSION}
-    depends_on: ['elasticsearch']
+    depends_on: [elasticsearch]
 
-  heartbeat:
-    image: ${HEARTBEAT_IMAGE_NAME}
-    container_name: heartbeat
-    networks: ['elastic']
-    restart: always
-    build: 
-      context: './heartbeat'
-      args:
-        - IMAGE_VERSION=${HEARTBEAT_IMAGE_VERSION}
-    depends_on: ['elasticsearch','kibana']
+  # heartbeat:
+  #   image: ${HEARTBEAT_IMAGE_NAME}
+  #   container_name: heartbeat
+  #   networks: ['elastic']
+  #   restart: always
+  #   build: 
+  #     context: './heartbeat'
+  #     args:
+  #       - IMAGE_VERSION=${HEARTBEAT_IMAGE_VERSION}
+  #   depends_on: ['elasticsearch','kibana']
 
   nginx:
     image: chudinov/nginx-kibana
     container_name: nginx
-    ports: ['8081:80']
-    networks: ['elastic']
+    ports: [8081:80]
+    networks: [elastic]
     restart: always
     build: 
       context: './nginx-kibana'
-    depends_on: ['elasticsearch','kibana']
+    depends_on: [elasticsearch,kibana]
 
 networks:
   elastic:
     name: elastic
-    driver: bridge
