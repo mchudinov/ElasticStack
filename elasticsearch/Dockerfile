@@ -6,7 +6,7 @@ FROM docker.elastic.co/elasticsearch/elasticsearch:$IMAGE_VERSION
 EXPOSE 9200 9300
 ENV discovery.type="single-node"
 ENV network.bind_host="0.0.0.0"
-ENV xpack.security.enabled 'true'
+#ENV xpack.security.enabled 'true'
 
 COPY --chown=elasticsearch:elasticsearch elasticsearch.yml /usr/share/elasticsearch/config/
 
