@@ -10,7 +10,7 @@ services:
     build:
       context: './elasticsearch'
       args:
-        - IMAGE_VERSION=${KIBANA_IMAGE_VERSION}
+        - IMAGE_VERSION=${ELASTICSEARCH_IMAGE_VERSION}
   
   logstash:
     image: ${LOGSTASH_IMAGE_NAME}
