@@ -1,2 +1,2 @@
-docker-compose build --build-arg AZURE_DEFAULT_ACCOUNT=dataverksted.blob.core.windows.net --build-arg AZURE_DEFAULT_KEY=f3Fx9LpUgzATh6ObarQjctf4TCDsFFfP97pUZICh/JWFMkUIb7TCYIGtahAkqhUYTMcemAcQB8yeunx3OcAhSw==
+docker-compose build --build-arg AZURE_DEFAULT_ACCOUNT=dataverksted --build-arg AZURE_DEFAULT_KEY=f3Fx9LpUgzATh6ObarQjctf4TCDsFFfP97pUZICh/JWFMkUIb7TCYIGtahAkqhUYTMcemAcQB8yeunx3OcAhSw==
 docker-compose up -d
