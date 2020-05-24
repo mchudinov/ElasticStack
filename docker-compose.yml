@@ -7,6 +7,9 @@ services:
     networks: [elastic]
     ports: ['9200:9200']
     restart: always
+    environment:      
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=true
     build:
       context: './elasticsearch'
       args:
@@ -37,16 +40,27 @@ services:
         - IMAGE_VERSION=${KIBANA_IMAGE_VERSION}
     depends_on: [elasticsearch]
 
-  # heartbeat:
-  #   image: ${HEARTBEAT_IMAGE_NAME}
-  #   container_name: heartbeat
-  #   networks: ['elastic']
-  #   restart: always
-  #   build: 
-  #     context: './heartbeat'
-  #     args:
-  #       - IMAGE_VERSION=${HEARTBEAT_IMAGE_VERSION}
-  #   depends_on: ['elasticsearch','kibana']
+  heartbeat:
+    image: ${HEARTBEAT_IMAGE_NAME}
+    container_name: heartbeat
+    networks: ['elastic']
+    restart: always
+    build: 
+      context: './heartbeat'
+      args:
+        - IMAGE_VERSION=${HEARTBEAT_IMAGE_VERSION}
+    depends_on: [elasticsearch,kibana]
+
+  metricbeat:
+      image: ${METRICBEAT_IMAGE_NAME}
+      container_name: metricbeat
+      networks: ['elastic']
+      restart: always
+      build: 
+        context: './metricbeat'
+        args:
+          - IMAGE_VERSION=${METRICBEAT_IMAGE_VERSION}
+      depends_on: [elasticsearch,kibana]
 
   nginx:
     image: chudinov/nginx-kibana
@@ -61,3 +75,4 @@ services:
 networks:
   elastic:
     name: elastic
+    driver: bridge

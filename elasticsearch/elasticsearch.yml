@@ -23,7 +23,7 @@
 # For information on supported formats and syntax for the config file, see
 # <http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup-configuration.html>
 
-
+# xpack.security.enabled: true
 ################################### Cluster ###################################
 
 # Cluster name identifies your cluster for auto-discovery. If you're running
