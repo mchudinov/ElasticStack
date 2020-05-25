@@ -30,24 +30,24 @@ metricbeat.modules:
     period: 10s
     hosts: ["http://localhost:9200"]
 
-  - module: system
-    metricsets:
-      - cpu             # CPU usage
-      - load            # CPU load averages
-      - memory          # Memory usage
-      - network         # Network IO
-      - process         # Per process metrics
-      - process_summary # Process summary
-      - uptime          # System Uptime
-      - socket_summary  # Socket summary
-      - diskio         # Disk IO
-      - filesystem     # File system usage for each mountpoint
-      - fsstat         # File system summary metrics
-      - service        # systemd service information
-    enabled: true
-    period: 10s
-    processes: ['.*']      
-    cpu.metrics:  ["percentages"]
+  # - module: system
+  #   metricsets:
+  #     - cpu             # CPU usage
+  #     - load            # CPU load averages
+  #     - memory          # Memory usage
+  #     - network         # Network IO
+  #     - process         # Per process metrics
+  #     - process_summary # Process summary
+  #     - uptime          # System Uptime
+  #     - socket_summary  # Socket summary
+  #     - diskio         # Disk IO
+  #     - filesystem     # File system usage for each mountpoint
+  #     - fsstat         # File system summary metrics
+  #     - service        # systemd service information
+  #   enabled: true
+  #   period: 10s
+  #   processes: ['.*']      
+  #   cpu.metrics:  ["percentages"]
   
   # processors:
   #   - add_cloud_metadata: ~
