@@ -28,7 +28,7 @@ metricbeat.modules:
       - node
       - node_stats
     period: 10s
-    hosts: ["http://localhost:9200"]
+    hosts: ["http://elasticsearch:9200"]
 
   # - module: system
   #   metricsets:
