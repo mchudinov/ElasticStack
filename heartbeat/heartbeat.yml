@@ -4,5 +4,5 @@ setup.kibana.host: "http://kibana:5601"
 heartbeat.monitors:
 - type: http
   schedule: '@every 60s'
-  urls: ["http://elasticsearch:9200"]
+  urls: ["http://elasticsearch:9200","https://fmd.client.eikplatform.io"]
   check.response.status: 200
