@@ -15,6 +15,7 @@ services:
       context: ./elasticsearch
       args:
         - 'IMAGE_VERSION=${ELASTICSEARCH_IMAGE_VERSION}'
+
   logstash:
     image: '${LOGSTASH_IMAGE_NAME}'
     container_name: logstash
@@ -32,6 +33,7 @@ services:
     command: logstash -f /usr/share/logstash/pipeline/logstash.conf
     depends_on:
       - elasticsearch
+
   kibana:
     image: '${KIBANA_IMAGE_NAME}'
     container_name: kibana
@@ -46,6 +48,7 @@ services:
         - 'IMAGE_VERSION=${KIBANA_IMAGE_VERSION}'
     depends_on:
       - elasticsearch
+
   heartbeat:
     image: '${HEARTBEAT_IMAGE_NAME}'
     container_name: heartbeat
@@ -59,6 +62,7 @@ services:
     depends_on:
       - elasticsearch
       - kibana
+
   metricbeat:
     image: '${METRICBEAT_IMAGE_NAME}'
     container_name: metricbeat
@@ -74,6 +78,7 @@ services:
     depends_on:
       - elasticsearch
       - kibana
+
   nginx:
     image: chudinov/nginx-kibana
     container_name: nginx
@@ -87,6 +92,7 @@ services:
     depends_on:
       - elasticsearch
       - kibana
+
 networks:
   elastic:
     name: elastic
