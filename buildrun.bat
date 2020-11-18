@@ -1,3 +1,6 @@
+
+REM AZURE_DEFAULT_ACCOUNT, AWS_ACCESS_KEY vaiables are for Elasticsearch backup to Azure Storage or AWS S3
+
 docker-compose build `
     --build-arg AZURE_DEFAULT_ACCOUNT=dataverksted `
     --build-arg AZURE_DEFAULT_KEY=f3...== `
