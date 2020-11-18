@@ -30,29 +30,26 @@ metricbeat.modules:
     period: 60s
     hosts: ["http://elasticsearch:9200"]
 
-  # - module: system
-  #   metricsets:
-  #     - cpu             # CPU usage
-  #     - load            # CPU load averages
-  #     - memory          # Memory usage
-  #     - network         # Network IO
-  #     - process         # Per process metrics
-  #     - process_summary # Process summary
-  #     - uptime          # System Uptime
-  #     - socket_summary  # Socket summary
-  #     - diskio         # Disk IO
-  #     - filesystem     # File system usage for each mountpoint
-  #     - fsstat         # File system summary metrics
-  #     - service        # systemd service information
-  #   enabled: true
-  #   period: 10s
-  #   processes: ['.*']      
-  #   cpu.metrics:  ["percentages"]
-  
-  # processors:
-  #   - add_cloud_metadata: ~
-  
+  - module: system
+    metricsets:
+      - cpu             # CPU usage
+      - load            # CPU load averages
+      - memory          # Memory usage
+      - network         # Network IO
+      - process         # Per process metrics
+      - process_summary # Process summary
+      - uptime          # System Uptime
+      - socket_summary  # Socket summary
+      - diskio         # Disk IO
+      - filesystem     # File system usage for each mountpoint
+      - fsstat         # File system summary metrics
+      - service        # systemd service information
+    enabled: true
+    period: 10s
+    processes: ['.*']      
+    cpu.metrics:  ["percentages"]
+
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
-  username: '${ELASTICSEARCH_USERNAME:}'
-  password: '${ELASTICSEARCH_PASSWORD:}'
+  # username: '${ELASTICSEARCH_USERNAME:}'
+  # password: '${ELASTICSEARCH_PASSWORD:}'

@@ -1,5 +1,5 @@
 docker build `
- --build-arg IMAGE_VERSION=7.9.1 `
+ --build-arg IMAGE_VERSION=7.10.0 `
  --build-arg AZURE_DEFAULT_ACCOUNT=dataverksted `
  --build-arg AZURE_DEFAULT_KEY=f3Fx9LpUgzATh6ObarQjctf4TCDsFFfP97pUZICh/JWFMkUIb7TCYIGtahAkqhUYTMcemAcQB8yeunx3OcAhSw== `
  --build-arg AWS_ACCESS_KEY=admin `
@@ -7,7 +7,7 @@ docker build `
  -t chudinov/elasticsearch .
 
  docker build \
- --build-arg IMAGE_VERSION=7.9.1 \
+ --build-arg IMAGE_VERSION=7.10.0 \
  --build-arg AZURE_DEFAULT_ACCOUNT=dataverksted \
  --build-arg AZURE_DEFAULT_KEY=f3Fx9LpUgzATh6ObarQjctf4TCDsFFfP97pUZICh/JWFMkUIb7TCYIGtahAkqhUYTMcemAcQB8yeunx3OcAhSw== \
  --build-arg AWS_ACCESS_KEY=admin \

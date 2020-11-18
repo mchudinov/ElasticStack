@@ -4,6 +4,8 @@ docker-compose build `
     --build-arg AWS_ACCESS_KEY=minioadmin `
     --build-arg AWS_SECRET_KEY=minioadmin
 
+docker-compose build --build-arg AZURE_DEFAULT_ACCOUNT=dataverksted --build-arg AZURE_DEFAULT_KEY=f3...== --build-arg AWS_ACCESS_KEY=minioadmin --build-arg AWS_SECRET_KEY=minioadmin
+
 docker-compose up -d
 
 docker-compose build \
